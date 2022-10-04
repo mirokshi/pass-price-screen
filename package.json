@@ -1,0 +1,22 @@
+{
+  "name": "pass-price-screen",
+  "prodcutName": "Pantalla de precios - PASS",
+  "version": "0.1.0",
+  "description": "Pantalla sencilla que muestra los precios de unarticulos buscado por codigo de barras",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron .",
+    "package-win": "electron-packager . pass-order-screen --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Pantalla de pedidos - PASS\""
+  },
+  "author": "Mrksh",
+  "license": "ISC",
+  "dependencies": {
+    "mssql": "^8.1.2",
+    "quagga": "^0.12.1"
+  },
+  "devDependencies": {
+    "electron": "^20.1.0",
+    "electron-packager": "^16.0.0",
+    "electron-reload": "^2.0.0-alpha.1"
+  }
+}
