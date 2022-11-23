@@ -25,8 +25,18 @@
         <img src="../../assets/img/logo.png" alt="Logo" style="width:50%;">
     </div>
     <div class="col-4">
-    <img src="../../assets/img/facebook2.png" alt="Logo" style="width:3%;">
-    <img src="../../assets/img/instagram2.png" alt="Logo" style="width:3%;">
+        <ul style="list-style: none;">
+            <li class="m-1">
+                <img src="../../assets/img/facebook2.png" alt="Logo" style="width:6%;">
+            </li>
+            <li class="m-1">
+                <img src="../../assets/img/instagram2.png" alt="Logo" style="width:6%;">
+            </li>
+            <li class="m-1">
+                <img src="../../assets/img/twitter2.png" alt="Logo" style="width:6%;">
+            </li>
+        </ul>
+
     </div>
 </div>
 <div id="centered">
@@ -47,21 +57,25 @@
     </div>
     <div id="result" class="text-center m-5"></div>
 </div>
-
 <script type="text/javascript">
     const sql = require('mssql');
+    const jquery = require('jquery')
 
-    var sqlConfig = {
-        user: "sa",
-        password: "sa",
-        server: "127.0.0.1",
-        database: "SAGE200",
-        // server: "172.26.0.11",
-        // database: "SAGE200",
-        options : {
-            trustServerCertificate : true
+    let sqlConfig;
+    
+    jquery.getJSON('../../credentials.json',function (data){
+        sqlConfig = {
+            user: data.credentials.user,
+            password: data.credentials.password,
+            server: data.credentials.server,
+            database: data.credentials.password,
+
+            options : {
+                trustServerCertificate : true
+            }
         }
-    };
+    })
+
     sql.on('error', err => {
         console.log(err)
     });
@@ -81,7 +95,11 @@
     async function sqlSearch(a){
         try {
             const pool = await sql.connect(sqlConfig)
-            const article = await sql.query("SELECT * FROM Articulos WHERE CodigoAlternativo='"+a+"'");
+            let article = await sql.query("SELECT * FROM Vis_Pass_ArticulosColores WHERE CodigoEAN_='"+a+"'");
+
+            if (article.recordset.length===0){
+                article = await sql.query("SELECT * FROM Vis_Pass_ArticulosColores WHERE CodigoAlternativo='"+a+"'");
+            }
 
             const result = document.getElementById('result')
             while (result.firstChild) {
@@ -90,6 +108,9 @@
             const description =  document.createElement('h4');
             description.setAttribute('id','descriptionArticle')
             description.appendChild(document.createTextNode(article.recordset[0].DescripcionArticulo));
+            if (article.recordset[0].Color_){
+                description.appendChild(document.createTextNode(' - '+article.recordset[0].Color_));
+            }
             result.appendChild(description);
 
             const price =  document.createElement('h3');

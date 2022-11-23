@@ -5,11 +5,11 @@ const { createPublicKey } = require("crypto");
 const sql = require('mssql');
 
 /*Comentar al pasar a PROD*/
-if(process.env.NODE_ENV !== 'production') {
-  require('electron-reload')(__dirname,{
-    electron: path.join(__dirname,'../node_modules','.bin','electron')
-  })
-}
+// if(process.env.NODE_ENV !== 'production') {
+//   require('electron-reload')(__dirname,{
+//     electron: path.join(__dirname,'../node_modules','.bin','electron')
+//   })
+// }
 
 app.on('ready',() => {
   let mainWindow = new BrowserWindow({
@@ -27,10 +27,10 @@ app.on('ready',() => {
   }))
   mainWindow.maximize();
   /*Descomentar al pasar a prod*/
-  // mainWindow.setMenu(null);
+  mainWindow.setMenu(null);
   /*Comentar al pasar a prod*/
-  const mainMenu = Menu.buildFromTemplate(templateMenu);
-  Menu.setApplicationMenu(mainMenu)
+  // const mainMenu = Menu.buildFromTemplate(templateMenu);
+  // Menu.setApplicationMenu(mainMenu)
 });
 
 const templateMenu = [
