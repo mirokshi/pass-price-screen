@@ -18,7 +18,7 @@ app.on('ready',() => {
       contextIsolation: false
     },
     //Cambiar a false al pasar a PROD
-    frame:true
+    frame:false
   });
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname,'views/index.html'),
@@ -30,7 +30,7 @@ app.on('ready',() => {
   mainWindow.setMenu(null);
   /*Comentar al pasar a prod*/
   // const mainMenu = Menu.buildFromTemplate(templateMenu);
-  // Menu.setApplicationMenu(mainMenu)
+  //Menu.setApplicationMenu(mainMenu)
 });
 
 const templateMenu = [

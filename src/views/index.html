@@ -68,16 +68,16 @@
             user: data.credentials.user,
             password: data.credentials.password,
             server: data.credentials.server,
-            database: data.credentials.password,
+            database: data.credentials.database,
 
             options : {
                 trustServerCertificate : true
             }
         }
     })
-
+    
     sql.on('error', err => {
-        console.log(err)
+        console.error(err)
     });
 
     function search(){
@@ -118,7 +118,7 @@
             price.appendChild(document.createTextNode(article.recordset[0].PrecioVenta+'€'));
             result.appendChild(price);
         }catch (e){
-            console.log('Error connect -> '+e)
+            console.error('Error connect -> '+e)
         }
     }
 </script>
