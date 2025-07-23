@@ -1,8 +1,8 @@
 {
   "name": "pass-price-screen",
-  "prodcutName": "Pantalla de precios - PASS",
-  "version": "0.1.0",
-  "description": "Pantalla sencilla que muestra los precios de unarticulos buscado por codigo de barras",
+  "prodcutName": "PasSolutions price sreen",
+  "version": "0.5.0",
+  "description": "Simple screen showing the price of an item searched by barcode",
   "main": "src/index.js",
   "scripts": {
     "start": "electron .",
